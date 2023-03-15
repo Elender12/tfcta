@@ -2,7 +2,7 @@
 
 variable "region" {
   type    = string
-  default = "eu-west-1"
+  #default = "eu-west-1"
 }
 
 variable "profile" {
@@ -51,10 +51,10 @@ variable "my_ami" {
   default     = "ami-0b752bf1df193a6c4"
 }
 
-# variable "key_name" {
-#   type = string
-#   default = "tf-course"
-# }
+variable "key_name" {
+  type = string
+  default = "tf-course"
+}
 
 
 ## Security Groups
@@ -69,6 +69,24 @@ variable "sec_allowed_external" {
 variable "special_port" {
   type = string
   description = "TCP port where Foobar application listens"
+  default = "9090"
 
 }
+
+locals {
+  service_name = "ele service test"
+  owner        = "Elena"
+  # Ids for multiple sets of EC2 instances, merged together
+  #instance_ids = concat(aws_instance.blue.*.id, aws_instance.green.*.id)
+}
+
+locals {
+  # Common tags to be assigned to all resources
+  common_tags = {
+    Service = local.service_name
+    Owner   = local.owner
+  }
+}
+
+
 
