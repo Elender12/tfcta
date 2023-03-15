@@ -11,7 +11,7 @@ terraform {
 }
 
 provider "aws" {
-  profile = "gk"
+  profile = "cta"
   region  = "eu-west-1"
 }
 
