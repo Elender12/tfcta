@@ -10,9 +10,14 @@ variable "profile" {
   default = "cta"
 }
 
-## 
+variable "lab_number"{
+  type = string 
+  default = "lab03"
+}
+
+## specific for "count"
 variable "num_instances" {
-  type = number
+  type    = number
   default = 2
 }
 ## Environment and Project

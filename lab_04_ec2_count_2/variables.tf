@@ -10,6 +10,12 @@ variable "profile" {
   default = "cta"
 }
 
+
+variable "lab_number" {
+  type    = string
+  default = "lab04"
+}
+
 ## Names of instances
 variable "instance_names" {
   type    = list(string)

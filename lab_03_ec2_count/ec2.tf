@@ -8,7 +8,7 @@ resource "aws_instance" "server" {
   vpc_security_group_ids = [aws_security_group.sec_web.id]
 
   tags = {
-    Name = "vm_lab3-${count.index}"
+    Name = "vm-${local.name_suffix}-${count.index}"
   }
 }
 

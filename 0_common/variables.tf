@@ -28,6 +28,11 @@ variable "project" {
   default = "proj99"
 }
 
+variable "lab_number"{
+  type = string 
+  default = "put-a-lab-number-here"
+}
+
 ## VPC parameters
 variable "vpc_cidr" {
   type = string
@@ -60,7 +65,6 @@ variable "sec_allowed_external" {
 
 ## ECS Parameters
 variable "container_port" {
-  type = string
-  
+  type = string 
 }
 

@@ -5,7 +5,10 @@ resource "aws_instance" "server1" {
   instance_type = var.instance_type
 
   vpc_security_group_ids = [aws_security_group.sec_web.id]
-  tags = local.common_tags
+ 
+  tags = {
+    Name    = "vm-${local.name_suffix}-1"
+  }
 }
 
 
