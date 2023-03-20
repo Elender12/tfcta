@@ -25,7 +25,7 @@ variable "users" {
 variable "more_users" {
   # Note no type
   default = {
-    luise = {
+    louise = {
       dept         = "IT"
       is_admin     = true
       favorite_pet = "Max"

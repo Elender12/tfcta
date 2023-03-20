@@ -10,22 +10,22 @@ variable "profile" {
   default = "cta"
 }
 
- 
- variable "haz_algo" {
-  type = number 
-  default = 0
- }
 
-variable "lab_number"{
-  type = string 
-  default = "lab03"
+variable "lab_number" {
+  type = string
 }
 
-## specific for "count"
-variable "num_instances" {
-  type    = number
-  default = 2
+## Names of instances
+variable "instance_names" {
+  type    = list(string)
+  default = ["dep1", "dep2", "dep3", "dep4"]
+  validation {
+    condition     = length(var.instance_names) > 0 && length(var.instance_names) <= 4
+    error_message = "Wrong number of instance names"
+  }
 }
+
+
 ## Environment and Project
 variable "company" {
   type        = string

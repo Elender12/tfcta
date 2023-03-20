@@ -10,22 +10,7 @@ variable "profile" {
   default = "cta"
 }
 
- 
- variable "haz_algo" {
-  type = number 
-  default = 0
- }
 
-variable "lab_number"{
-  type = string 
-  default = "lab03"
-}
-
-## specific for "count"
-variable "num_instances" {
-  type    = number
-  default = 2
-}
 ## Environment and Project
 variable "company" {
   type        = string
@@ -43,15 +28,41 @@ variable "project" {
   default = "proj99"
 }
 
+variable "lab_number" {
+  type    = string
+  default = "put-a-lab-number-here"
+}
+
+## VPC and subnet parameters
+
 ## VPC parameters
 variable "vpc_cidr" {
   type    = string
-  default = "10.99.0.0/16"
+  default = "10.10.0.0/16"
   validation {
     condition     = can(cidrnetmask(var.vpc_cidr)) ## Needs work
     error_message = "Invalid CIDR for VPC."
   }
 }
+
+variable "public_subnets" {
+  type        = list(string)
+  description = "list of subnets used for public subnets"
+  default     = ["10.10.1.0/24", "10.10.2.0/24"]
+}
+
+variable "private_subnets" {
+  type        = list(string)
+  description = "list of subnets used for private subnets"
+  default     = ["10.10.10.0/23", "10.10.12.0/23"]
+}
+
+variable "db_subnets" {
+  type        = list(string)
+  description = "list of subnets used for database subnets"
+  default     = ["10.10.201.0/24", "10.10.202.0/24"]
+}
+
 
 ## EC2 Instance Parameters
 
@@ -60,16 +71,10 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
-variable "my_ami" {
-  description = "ami for EC2 instance"
-  type        = string
-  default     = "ami-0b752bf1df193a6c4"
+variable "key_name" {
+  type    = string
+  default = "tf-course"
 }
-
-# variable "key_name" {
-#   type = string
-#   default = "tf-course"
-# }
 
 
 ## Security Groups
@@ -77,13 +82,10 @@ variable "sec_allowed_external" {
   description = "CIDRs from which access is allowed"
   type        = list(string)
   default     = ["0.0.0.0/0"]
-  # default = ["2.37.1.5/32"]
 }
 
 ## ECS Parameters
 variable "special_port" {
-  type        = string
-  description = "TCP port where Foobar application listens"
-
+  type = string
 }
 

@@ -10,22 +10,6 @@ variable "profile" {
   default = "cta"
 }
 
- 
- variable "haz_algo" {
-  type = number 
-  default = 0
- }
-
-variable "lab_number"{
-  type = string 
-  default = "lab03"
-}
-
-## specific for "count"
-variable "num_instances" {
-  type    = number
-  default = 2
-}
 ## Environment and Project
 variable "company" {
   type        = string
@@ -41,6 +25,11 @@ variable "environment" {
 variable "project" {
   type    = string
   default = "proj99"
+}
+
+variable "lab_number" {
+  type    = string
+  default = "ex01a"
 }
 
 ## VPC parameters
@@ -77,13 +66,12 @@ variable "sec_allowed_external" {
   description = "CIDRs from which access is allowed"
   type        = list(string)
   default     = ["0.0.0.0/0"]
-  # default = ["2.37.1.5/32"]
+  # default = ["2.37.1.5/32", "8.2.0.0/16"]
 }
 
 ## ECS Parameters
 variable "special_port" {
   type        = string
   description = "TCP port where Foobar application listens"
-
 }
 
