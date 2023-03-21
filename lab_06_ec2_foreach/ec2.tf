@@ -33,12 +33,14 @@ locals {
 locals {
   test1 = { for key, val in local.instance_info : upper(key) => upper(val)}
   test2 = [for clave, valor in local.instance_info : "Maps ${clave} to ${valor}"]
-  test3 = [for k, instance in aws_instance.server2 : instance.public_ip]
+  test3 = [for k, pepe in aws_instance.server2 : "${k}-${pepe.public_ip}"]
   test4 = { for k, instance in aws_instance.server2 : instance.public_dns => instance.public_ip }
 
   test5 = { for k, instance in aws_instance.server2 : instance.id => { (instance.public_dns) = instance.public_ip }}
   test6 = [for k, instance in aws_instance.server2 : instance.public_dns]
   test7 = zipmap(local.test3, local.test6)
+
+  region_ilustrada = "Mi region es ${var.region}"
 }
 
 

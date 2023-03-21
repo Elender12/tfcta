@@ -1,7 +1,15 @@
+## Activate debug 
+
+In the terminal were you run terraform commands, create env variables with command:
+
 export TF_LOG_PROVIDER=DEBUG
 export TF_LOG_PATH=terraform.log 
 
-tail -f terraform.log | grep -o Action.*\&
+In another terminal where you will "tail" the terraform.log command, run the command
+tail -f terraform.log | grep -o Action.*&\
+
+
+## Some commands to explore filter (work in progress)
 
 
 grep -o prints only the matching part of the lines

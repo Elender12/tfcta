@@ -3,7 +3,10 @@ resource "aws_vpc" "vpc1" {
   cidr_block           = var.vpc_cidr
   enable_dns_support   = true
   enable_dns_hostnames = true
-  tags                 = { Name = "vpc-${local.name_suffix}" }
+  tags = { 
+    Name   = "vpc-${local.name_suffix}"
+    Equipo = "Athletic"
+  }
 }
 
 resource "aws_subnet" "public_subnet" {

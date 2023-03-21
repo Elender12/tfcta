@@ -5,6 +5,12 @@ variable "environment" {
   default     = "dev"
 }
 
+variable "company" {
+  type = string
+  description = "company name - will be used in tags"
+  default = "acme"
+}
+
 variable "project" {
   description = "Project Name"
   type        = string

@@ -1,0 +1,14 @@
+AWS IAM Presentations
+
+ AWS re:Invent 2022 - A day in the life of a billion requests (SEC404) 
+ https://www.youtube.com/watch?v=tPr1AgGkvc4
+
+ AWS re:Inforce 2022 - AWS Identity and Access Management (IAM) deep dive (IAM301) 
+ Becky Weiss
+ https://www.youtube.com/watch?v=YMj33ToS8cI
+
+
+Terraform Links
+- Weekly newsletter - Anton Babenko
+https://www.weekly.tf/
+

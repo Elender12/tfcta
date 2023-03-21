@@ -65,7 +65,9 @@ variable "db_subnets" {
 
 
 ## EC2 Instance Parameters
-
+variable "num_instances" {
+  default = 6
+}
 variable "instance_type" {
   type    = string
   default = "t2.micro"
