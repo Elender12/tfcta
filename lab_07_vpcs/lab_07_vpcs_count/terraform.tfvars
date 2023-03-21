@@ -1,2 +1,2 @@
-lab_number = "07a"
+lab_number   = "07a"
 special_port = 666

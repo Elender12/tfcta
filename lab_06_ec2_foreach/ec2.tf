@@ -2,21 +2,21 @@
 ## Start with this configurattion
 ## Note the object is defined explicitly inside the resource
 
-# resource "aws_instance" "server1" {
-#   ami                    = data.aws_ami.amazon_linux2_kernel_5.id
-#   vpc_security_group_ids = [aws_security_group.sec_web.id]
+resource "aws_instance" "server1" {
+  ami                    = data.aws_ami.amazon_linux2_kernel_5.id
+  vpc_security_group_ids = [aws_security_group.sec_web.id]
 
-#   for_each = {
-#     dep1 = "t2.micro"
-#     dep2 = "t3.micro"
-#     dep3 = "t3.micro"
-#     dep4 = "t2.micro"
-#   }
-#   instance_type = each.value
-#   tags = {
-#     Name = "server-${local.name_suffix}-${each.value}"  
-#   }
-# }
+  for_each = {
+    dep1 = "t2.micro"
+    dep2 = "t3.micro"
+    dep3 = "t3.micro"
+    dep4 = "t2.micro"
+  }
+  instance_type = each.value
+  tags = {
+    Name = "server-${local.name_suffix}-${each.value}"  
+  }
+}
 
 
 ## Here we create an object variable with the same content we used explicitly above
