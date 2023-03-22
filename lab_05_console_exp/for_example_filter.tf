@@ -58,6 +58,16 @@ locals {
   }
 
   total_users = merge(var.users, var.more_users)
-
+  prueba_merge = merge(
+    {
+      lewandowski = "Barcelona"
+      williams = "Athletic"
+    },
+    {
+      ancelotti = "R.Madrid"
+      simeone = "Atletico"
+    },
+    { joaquin = "Betis"}
+  )
 }
 

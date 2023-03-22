@@ -1,17 +1,19 @@
 Testing S3 State
 
-Convention used in these examples / course
+This terraform code creates some resources and stores the state in a bucket we have created in "create-state-bucket"
+
+Convention used in these examples / course :
 - State bucket specific to project specified in var.project (e.g. "acme02)).
-- Each app within the project (e.g. example-01 and example-02) use app-specific keys within the same bucket
+- Each app within the project (e.g. example-02 and example-02) use app-specific keys within the same bucket
 - Lock table is also unique per project.  Terraform will add an app-specific item when locking the state
 
-For app  "example-01"
-    bucket         = "acme02-terraform-state-dev"           
+For App  "example-02"
+    bucket         = "acme02-terraform-state-<acctnumber>-dev"           
     dynamodb_table = "acme02-terraform-state-locks-dev"
-    key            = "acme02/example-01/terraform.tfstate"  ## Note key is application specific
+    key            = "acme02/example-02/terraform.tfstate"  ## Note key is application specific
 
-For app  "example-02"
-    bucket         = "acme02-terraform-state-dev"           
+For App  "example-02"
+    bucket         = "acme02-terraform-state-<acctnumber>-dev"           
     dynamodb_table = "acme02-terraform-state-locks-dev"
     key            = "acme02/example-02/terraform.tfstate"  ## Note key is application specific
 
@@ -22,7 +24,7 @@ Scan of items in state table when there are no locks
 Yields one entry per "state-key" in the S3 bucket
 
 ```
-aws dynamodb scan --table-name acme02-terraform-state-locks-dev 
+aws dynamodb scan --table-name acme02-terraform-state-locks-dev --profile xxxx
 ConsumedCapacity: null
 Count: 2
 Items:
@@ -33,15 +35,15 @@ Items:
 - Digest:
     S: 71bfe965dbf64a678d430d2e520f2c9f
   LockID:
-    S: acme02-terraform-state-dev/acme02/example-01/terraform.tfstate-md5
+    S: acme02-terraform-state-dev/acme02/example-02/terraform.tfstate-md5
 ScannedCount: 2
 ```
 
-Scan of table when a lock is acquired.  In this case run `terraform destroy` in the example-01 directory and scan table while terraform waits for user confirmation ('yes')
+Scan of table when a lock is acquired.  In this case run `terraform destroy` in the example-02 directory and scan table while terraform waits for user confirmation ('yes')
 
 Note there is a new item in table associated with the path to the state of this application:
 ```
-aws dynamodb scan --table-name acme02-terraform-state-locks-dev 
+aws dynamodb scan --table-name acme02-terraform-state-locks-dev --profile xxx
 ConsumedCapacity: null
 Count: 3
 Items:
@@ -52,11 +54,12 @@ Items:
 - Digest:
     S: 71bfe965dbf64a678d430d2e520f2c9f
   LockID:
-    S: acme02-terraform-state-dev/acme02/example-01/terraform.tfstate-md5
+    S: acme02-terraform-state-dev/acme02/example-02/terraform.tfstate-md5
 - Info:
-    S: '{"ID":"b51a95d4-a170-b341-6e8f-26b2b3112213","Operation":"OperationTypeApply","Info":"","Who":"rafa@rp3","Version":"1.1.7","Created":"2022-05-04T10:21:49.787882302Z","Path":"acme02-terraform-state-dev/acme02/example-01/terraform.tfstate"}'
+    S: '{"ID":"b51a95d4-a170-b341-6e8f-26b2b3112213","Operation":"OperationTypeApply","Info":"","Who":"rafa@rp3","Version":"1.1.7","Created":"2022-05-04T10:21:49.787882302Z","Path":"acme02-terraform-state-dev/acme02/example-02/terraform.tfstate"}'
   LockID:
-    S: acme02-terraform-state-dev/acme02/example-01/terraform.tfstate
+    S: acme02-terraform-state-dev/acme02/example-02/terraform.tfstate
 ScannedCount: 3
 
 ```
+

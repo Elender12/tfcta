@@ -1,21 +1,21 @@
 output "public_ip" {
   description = "Public IP of instance"
-  value       = aws_instance.test2.public_ip
+  value       = aws_instance.test1.public_ip
 }
 
 output "key_name" {
   description = "SSH Key Name"
-  value       = aws_instance.test2.key_name
+  value       = aws_instance.test1.key_name
 }
 
 output "ami" {
   description = "AMI of instance"
-  value       = aws_instance.test2.ami
+  value       = aws_instance.test1.ami
 }
 
 output "instance_id" {
   description = "Id of instance"
-  value       = aws_instance.test2.id
+  value       = aws_instance.test1.id
 }
 
 

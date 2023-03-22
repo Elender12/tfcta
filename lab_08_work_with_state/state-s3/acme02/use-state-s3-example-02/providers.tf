@@ -1,22 +1,38 @@
 terraform {
-  required_version = "~> 1.1.0"
+  required_version = "~> 1.4.0"
 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 4.6" # v3.38.0 minimal version to use default tags
+      version = ">= 4.6"
     }
   }
 
-  backend "s3" {
-    bucket         = "acme02-terraform-state-044858806836-dev"
-    key            = "acme02/example-02/terraform.tfstate" ## Note key is application specific
-    dynamodb_table = "acme02-terraform-state-locks-dev"
-    region         = "eu-west-1"
-    encrypt        = true
-    profile        = "tfadmin1"
+  ## Note we cannot use variables here!
+
+    backend "s3" {
+      bucket         = "PUT HERE YOUR BUCKET NAME" # Rafa: "acme02-terraform-state-975030449833-dev"           
+      ## Note key is application specific
+      key            = "PUT HERE YOUR APP SPECIFIC PATH (example01)" # "acme02/example-02/terraform.tfstate"  
+      dynamodb_table = "PUT HERE YOUR TABLE NAME" #   "acme02-terraform-state-locks-dev"
+      region         = "eu-west-1"
+      encrypt        = true
+      # profile = "cta"
+      profile = "YOURACCOUNT_TerraformCourse"   ## TODO
+    }
   }
-}
+
+  ## RAFA working example
+  # backend "s3" {
+  #   bucket = "acme02-terraform-state-975030449833-dev"
+  #   ## Note key is application specific
+  #   key            = "acme02/example-02/terraform.tfstate"
+  #   dynamodb_table = "acme02-terraform-state-locks-dev"
+  #   region         = "eu-west-1"
+  #   encrypt        = true
+  #   # profile        = "cta"
+  #   profile = "975030449833_TerraformCourse"
+  #  }
 
 provider "aws" {
   region  = var.region
@@ -30,3 +46,5 @@ provider "aws" {
     }
   }
 }
+
+

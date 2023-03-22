@@ -17,7 +17,7 @@ provider "aws" {
       "${var.company}:environment" = var.environment
       "${var.company}:project"     = var.project
       created_by                   = "terraform"
-      disposable                   = false
+      disposable                   = true
     }
   }
 }

@@ -9,12 +9,6 @@ resource "aws_instance" "test_import" {
     Name = "vm-${local.name_suffix}-1"
   }
 }
-
-resource "aws_instance" "test1" {
-  
-}
-
-
  
 # Security group: allow ssh and ICMP ping from allowed external subnets
 resource "aws_security_group" "sec_ssh_ping_import" {
@@ -44,5 +38,18 @@ resource "aws_security_group" "sec_ssh_ping_import" {
 
   lifecycle {
     create_before_destroy = true
+  }
+}
+
+resource "aws_instance" "importada_rafa" {
+ tags = {
+  project = var.project
+ }
+ 
+
+ lifecycle {
+ ignore_changes = [
+   tags
+ ]
   }
 }

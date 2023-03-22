@@ -1,11 +1,4 @@
-## Locals
 
-locals {
-  # account_id = data.aws_caller_identity.current.account_id
-  # Below used for troubleshooting
-  # vpc_info   = data.aws_vpc.def_vpc
-  # subnet_info = data.aws_subnets.def_vpc_subnets
-}
 
 
 resource "aws_instance" "test1" {
@@ -13,9 +6,9 @@ resource "aws_instance" "test1" {
   instance_type          = var.instance_type
   subnet_id              = data.aws_subnets.def_vpc_subnets.ids[0]
   vpc_security_group_ids = [aws_security_group.sec_web.id]
-  key_name               = var.key_name
+  # key_name               = var.key_name
   tags = {
-    Name = "${var.project}-test1"
+    Name = "test-${local.name_suffix}"
   }
 }
 
@@ -24,7 +17,7 @@ resource "aws_instance" "test1" {
 
 resource "aws_security_group" "sec_web" {
   vpc_id = data.aws_vpc.def_vpc.id
-  name   = "sec-web"
+  name   = "sec-web-${local.name_suffix}"
   ingress {
     description = "Temp for testing - SSH from specific addresses"
     from_port   = 22
@@ -58,6 +51,10 @@ resource "aws_security_group" "sec_web" {
   }
   tags = {
     Name = "sec-web"
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
 

@@ -4,7 +4,9 @@ Terraform - S3 Backend
 
 This terraform code creates a bucket  to store Terraform state and a dynamodb table to serve as lock.
 
-We use the convention:
+We will make reference to this bucket and lock in the "provider block" of other labs
+
+We use the following convention to name the resources:
 
 - bucket <project>-terraform-state-<acct-id>-<environment> e.g. acme02-terraform-state-dev
 - dynamodb database <project>-terraform-state-locks-<environment> e.g. acme02-terraform-state-locks-dev
@@ -14,20 +16,22 @@ We use <acct-id> so that bucket names are unique -- otherwise each student accco
 Convention used in these examples / course
 - State bucket specific to project specified in var.project (e.g. "acme02)).
     - ${var.project}-terraform-state-${local.account_id}-${var.environment}   
-- Lock table is also unique per project.  Terraform will add an app-specific item when locking the state
+    - Example: acme02-terraform-state-975022449833-dev
+- Lock table is also unique per project.  Terraform will add an app-specific item when locking the state.  Note we do not include the account number in the table name, since they can be unique across accounts.
     - ${var.project}-terraform-state-locks-${var.environment}   
-- Each app within the project (e.g. example-01 and example-02) use app-specific keys within the same bucket
-    - ${var.project}/
+    - Example: acme02-terraform-state-locks-dev
+- Each app within the project (e.g. example-01 and example-02 within project acme02 ) use app-specific keys within the same bucket
+    - ${var.project}/APPNAME/terraform.tfstate
 
 Example:
 
 For app  "example-01"
-    bucket         = "acme02-terraform-state-dev"           
+    bucket         = "acme02-terraform-state-975022449833-dev"           
     dynamodb_table = "acme02-terraform-state-locks-dev"
     key            = "acme02/example-01/terraform.tfstate"  ## Note key is application specific
 
 For app  "example-02"
-    bucket         = "acme02-terraform-state-dev"           
+    bucket         = "acme02-terraform-state-975022449833-dev"           
     dynamodb_table = "acme02-terraform-state-locks-dev"
     key            = "acme02/example-02/terraform.tfstate"  ## Note key is application specific
 

@@ -8,12 +8,12 @@ Convention used in these examples / course :
 - Lock table is also unique per project.  Terraform will add an app-specific item when locking the state
 
 For App  "example-01"
-    bucket         = "acme02-terraform-state-dev"           
+    bucket         = "acme02-terraform-state-<acctnumber>-dev"           
     dynamodb_table = "acme02-terraform-state-locks-dev"
     key            = "acme02/example-01/terraform.tfstate"  ## Note key is application specific
 
 For App  "example-02"
-    bucket         = "acme02-terraform-state-dev"           
+    bucket         = "acme02-terraform-state-<acctnumber>-dev"           
     dynamodb_table = "acme02-terraform-state-locks-dev"
     key            = "acme02/example-02/terraform.tfstate"  ## Note key is application specific
 
@@ -62,3 +62,4 @@ Items:
 ScannedCount: 3
 
 ```
+

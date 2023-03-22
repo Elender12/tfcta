@@ -5,7 +5,6 @@ resource "aws_vpc" "vpc1" {
   enable_dns_hostnames = true
   tags = { 
     Name   = "vpc-${local.name_suffix}"
-    Equipo = "Athletic"
   }
 }
 

@@ -1,15 +1,5 @@
-## Environment and Project
-variable "environment" {
-  type        = string
-  description = "e.g. test dev prod"
-  default     = "dev"
-}
-
-variable "project" {
-  type = string
-}
-
 ## AWS Specific parameters
+
 variable "region" {
   type    = string
   default = "eu-west-1"
@@ -20,11 +10,35 @@ variable "profile" {
   default = "cta"
 }
 
-variable "lab_number" {
-  type = string
+## Environment and Project
+variable "company" {
+  type        = string
+  description = "company name - will be used in tags"
+  default     = "acme"
+}
+variable "environment" {
+  type        = string
+  description = "e.g. test dev prod"
+  default     = "dev"
 }
 
+variable "project" {
+  type    = string
+  default = "proj99"
+}
+
+variable "lab_number" {
+  type    = string
+  default = "put-a-lab-number-here"
+}
+
+
+
+
 ## EC2 Instance Parameters
+variable "num_instances" {
+  default = 2
+}
 variable "instance_type" {
   type    = string
   default = "t2.micro"
@@ -43,3 +57,11 @@ variable "sec_allowed_external" {
   default     = ["0.0.0.0/0"]
 }
 
+## ECS Parameters
+variable "special_port" {
+  type = string
+}
+
+variable "vpc_name" {
+  type = string
+}

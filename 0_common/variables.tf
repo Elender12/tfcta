@@ -30,7 +30,6 @@ variable "project" {
 
 variable "lab_number"{
   type = string 
-  default = "put-a-lab-number-here"
 }
 
 ## VPC parameters

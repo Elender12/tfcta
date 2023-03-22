@@ -6,8 +6,7 @@ variable "environment" {
 }
 
 variable "project" {
-  type    = string
-  default = "proj99"
+  type = string
 }
 
 ## AWS Specific parameters
@@ -18,7 +17,11 @@ variable "region" {
 
 variable "profile" {
   type    = string
-  default = "tfadmin1"
+  default = "cta"
+}
+
+variable "lab_number" {
+  type = string
 }
 
 ## EC2 Instance Parameters
@@ -37,6 +40,6 @@ variable "key_name" {
 variable "sec_allowed_external" {
   description = "CIDRs from which access is allowed"
   type        = list(string)
-  default     = ["0.0.0.0/10", "0.0.0.0/10"]
+  default     = ["0.0.0.0/0"]
 }
 

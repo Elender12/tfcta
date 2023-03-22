@@ -27,6 +27,6 @@ output "instance_id" {
 output "user_identity" {
   description = "Info about IAM principal used by Terraform to configure AWS"
   # value       = data.aws_caller_identity.current
-  value       = try(data.aws_caller_identity.current, "Not available")
+  value = try(data.aws_caller_identity.current, "Not available")
 }
 
