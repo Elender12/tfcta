@@ -10,13 +10,11 @@ resource "aws_instance" "test_import" {
   }
 }
 
-resource "aws_instance" "rafatest" {
-  # (resource arguments)
+resource "aws_instance" "test1" {
+  
 }
 
-resource "aws_instance" "rafatest2" {
-  # (resource arguments)
-}
+
  
 # Security group: allow ssh and ICMP ping from allowed external subnets
 resource "aws_security_group" "sec_ssh_ping_import" {
