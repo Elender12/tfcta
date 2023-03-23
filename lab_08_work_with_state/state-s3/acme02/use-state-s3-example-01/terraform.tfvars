@@ -1,6 +1,6 @@
-# profile = "cta"
+ profile = "cta"
 # profile = "975030449833_TerraformCourse"  (RAFA)
-profile = "YOURACCOUNT_TerraformCourse"
+# profile = "YOURACCOUNT_TerraformCourse"
 
 region  = "eu-west-1"
 
