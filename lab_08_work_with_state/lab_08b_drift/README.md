@@ -20,3 +20,6 @@ aws ec2 authorize-security-group-ingress --group-name "sg_web" --protocol tcp --
 
 aws ec2 modify-instance-attribute --instance-id $(terraform output -raw instance_id) --groups $SG_ID --profile cta
 
+
+
+ssh ubuntu@$(terraform output -raw public_ip) -i key
