@@ -16,6 +16,9 @@ variable "region" {
   default = "eu-west-1"
 }
 
+variable "lab_number" {
+  type = string
+}
 variable "profile" {
   type    = string
   default = "tfadmin1"

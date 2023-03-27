@@ -1,6 +1,4 @@
-# profile = "cta"
-# profile = "975030449833_TerraformCourse"  (RAFA)
-profile = "YOURACCOUNT_TerraformCourse"
+profile = "cta"
 
 region  = "eu-west-1"
 
@@ -16,4 +14,4 @@ sec_allowed_external = ["0.0.0.0/0"]
 key_name             = "tf-course"
 
 
-lab_number = "08b2"
+lab_number = "use-state-3"

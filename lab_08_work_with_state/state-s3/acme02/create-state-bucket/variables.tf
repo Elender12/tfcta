@@ -27,6 +27,6 @@ variable "profile" {
   type        = string
 }
 
-variable "lab_number"{
-  type = string 
+variable "lab_number" {
+  type = string
 }

@@ -10,29 +10,27 @@ terraform {
 
   ## Note we cannot use variables here!
 
-    backend "s3" {
-      bucket         = "PUT HERE YOUR BUCKET NAME" # Rafa: "acme02-terraform-state-975030449833-dev"           
-      ## Note key is application specific
-      key            = "PUT HERE YOUR APP SPECIFIC PATH (example01)" # "acme02/example-02/terraform.tfstate"  
-      dynamodb_table = "PUT HERE YOUR TABLE NAME" #   "acme02-terraform-state-locks-dev"
-      region         = "eu-west-1"
-      encrypt        = true
-      # profile = "cta"
-      profile = "YOURACCOUNT_TerraformCourse"   ## TODO
-    }
+  backend "s3" {
+    bucket = "acme02-terraform-state-975030449833-dev" # "PUT HERE YOUR BUCKET NAME" - Rafa: "acme02-terraform-state-975030449833-dev"           
+    ## Note key is application specific
+    key            = "acme02/example-02/terraform.tfstate" # "PUT HERE YOUR APP SPECIFIC PATH (example01)" # "acme02/example-02/terraform.tfstate"  
+    dynamodb_table = "acme02-terraform-state-locks-dev"    # "PUT HERE YOUR TABLE NAME" #   "acme02-terraform-state-locks-dev"
+    region         = "eu-west-1"
+    encrypt        = true
+    profile        = "cta"
   }
+}
 
-  ## RAFA working example
-  # backend "s3" {
-  #   bucket = "acme02-terraform-state-975030449833-dev"
-  #   ## Note key is application specific
-  #   key            = "acme02/example-02/terraform.tfstate"
-  #   dynamodb_table = "acme02-terraform-state-locks-dev"
-  #   region         = "eu-west-1"
-  #   encrypt        = true
-  #   # profile        = "cta"
-  #   profile = "975030449833_TerraformCourse"
-  #  }
+## student00 working example
+# backend "s3" {
+#   bucket = "acme02-terraform-state-975030449833-dev"
+#   ## Note key is application specific
+#   key            = "acme02/example-02/terraform.tfstate"
+#   dynamodb_table = "acme02-terraform-state-locks-dev"
+#   region         = "eu-west-1"
+#   encrypt        = true
+#   profile        = "cta"
+#  }
 
 provider "aws" {
   region  = var.region

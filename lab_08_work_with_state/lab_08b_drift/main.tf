@@ -43,7 +43,8 @@ resource "aws_instance" "example" {
   ami                    = data.aws_ami.ubuntu.id
   key_name               = aws_key_pair.deployer.key_name
   instance_type          = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.sg_ssh.id]
+  # vpc_security_group_ids = [aws_security_group.sg_ssh.id]
+  vpc_security_group_ids = [aws_security_group.sg_ssh.id, aws_security_group.sg_web.id]
   user_data              = <<-EOF
               #!/bin/bash
               apt-get update
@@ -73,4 +74,30 @@ resource "aws_security_group" "sg_ssh" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+resource "aws_security_group" "sg_web" {
+  name        = "sg_web"
+  description = "allow 8080"
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_security_group_rule" "sg_web" {
+  type      = "ingress"
+  to_port   = "8080"
+  from_port = "8080"
+  protocol  = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.sg_web.id
+}
+resource "aws_security_group_rule" "sg_web_80" {
+  type      = "ingress"
+  to_port   = "80"
+  from_port = "80"
+  protocol  = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  description = "Hola Hola"
+  security_group_id = aws_security_group.sg_web.id
 }

@@ -1,30 +1,23 @@
-## Locals
 
-locals {
-  account_id = data.aws_caller_identity.current.account_id
-  # Below used for troubleshooting
-  # vpc_info   = data.aws_vpc.def_vpc
-  # subnet_info = data.aws_subnets.def_vpc_subnets
-}
 
 
 resource "aws_instance" "test3" {
   ami                    = data.aws_ami.amazon_linux2_kernel_5.id
   instance_type          = var.instance_type
-  subnet_id              = data.aws_subnets.def_vpc_subnets.ids[1]
-  vpc_security_group_ids = [aws_security_group.sec_web3.id]
-  key_name               = var.key_name
+  subnet_id              = data.aws_subnets.def_vpc_subnets.ids[0]
+  vpc_security_group_ids = [aws_security_group.sec_web.id]
+  # key_name               = var.key_name
   tags = {
-    Name = "${var.project}-test3"
+    Name = "test-${local.name_suffix}"
   }
 }
 
 
 # Security group for web server in public subnet 
 
-resource "aws_security_group" "sec_web3" {
+resource "aws_security_group" "sec_web" {
   vpc_id = data.aws_vpc.def_vpc.id
-  name   = "sec-web3"
+  name   = "sec-web-${local.name_suffix}"
   ingress {
     description = "Temp for testing - SSH from specific addresses"
     from_port   = 22
@@ -57,6 +50,13 @@ resource "aws_security_group" "sec_web3" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name = "sec-web3"
+    Name = "sec-web"
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
+
+
+
