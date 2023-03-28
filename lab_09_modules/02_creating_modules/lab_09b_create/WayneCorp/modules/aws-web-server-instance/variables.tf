@@ -1,21 +1,22 @@
 ## Mandatory variables 
 
 variable "ec2_instance_name" {
-  type    = string
+  description = "Instance name"
+  type        = string
 }
 
 variable "os" {
-  description = "ubuntu or amazon_linux"
+  description = "Select OS: Ubuntu or Amazon_linux"
   validation {
     condition     = contains(["ubuntu", "amazon_linux"], var.os)
     error_message = "Valid values for os: unbuntu or amazon_linux."
-  } 
+  }
 }
 
 variable "ec2_instance_type" {
-  description = "Instance type for web server EC2 instance"
+  description = "Instance type for EC2 instance"
   type        = string
-   validation {
+  validation {
     condition = anytrue([
       var.ec2_instance_type == "t2.micro",
       var.ec2_instance_type == "t3.micro"
@@ -26,18 +27,18 @@ variable "ec2_instance_type" {
 
 
 variable "vpc_id" {
-  description = "VPC id"
-  type = string
+  description = "Id of VPC where instance will be deployed"
+  type        = string
 }
 
 variable "subnet_id" {
-  description = "subnet id"
-  type = string
+  description = "Id of subnet where instance will be deployed (belongs to VPC)"
+  type        = string
 }
 
 variable "sec_group_ids" {
-  description = "security group id"
-  type = list(string)
-  default = []
+  description = "IDs of Security groups (list)"
+  type        = list(string)
+  default     = []
 }
 

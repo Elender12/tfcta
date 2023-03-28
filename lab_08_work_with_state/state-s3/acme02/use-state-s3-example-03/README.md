@@ -32,3 +32,6 @@ $ aws s3 ls acme02-terraform-state-YOURACCOUNT-dev --recursive --profile cta
 2023-03-26 13:06:45      14446 acme02/example-02/terraform.tfstate
 2023-03-26 13:21:05      14469 acme02/example-03/terraform.tfstate
 
+Verifying locks
+
+aws dynamodb scan --table-name acme02-terraform-state-locks-dev --profile cta

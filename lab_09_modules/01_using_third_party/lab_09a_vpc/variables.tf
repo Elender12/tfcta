@@ -47,7 +47,7 @@ variable "vpc_cidr1" {
 variable "pub_subnets" {
   type        = list(string)
   description = "list of subnets used for public subnets"
-  default     = ["10.11.1.0/24", "10.11.2.0/24"]
+  default     = ["10.11.1.0/24", "10.11.2.0/24", "10.11.3.0/24"]
 }
 
 variable "priv_subnets" {

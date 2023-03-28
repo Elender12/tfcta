@@ -27,7 +27,7 @@ resource "aws_internet_gateway" "web_server_igw" {
   vpc_id = aws_vpc.web_server_vpc.id
 
   tags = {
-    Name = var.igw_name
+    Name = "${var.vpc_name}-${var.igw_name}"
   }
 }
 
@@ -39,8 +39,7 @@ resource "aws_route_table" "web_server_rt" {
   }
 
   tags = {
-    Name = var.rt_name
-  }
+    Name = "${var.vpc_name}-${var.rt_name}"  }
 }
 
 resource "aws_route_table_association" "web_server_rt_association" {

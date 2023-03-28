@@ -3,7 +3,8 @@
 
 
 module "vpc_proj2" {
-  source            = "../modules/aws-web-vpc"
+  #  source            = "../modules/aws-web-vpc"
+  source            = "github.com/rpgd60/tfcourse-modules//web-modules/aws-web-vpc"
   vpc_name          = var.project
   subnet_name       = "${var.project}-subnet"
   aws_az            = "${var.region}c"
@@ -15,7 +16,8 @@ module "vpc_proj2" {
 
 ## Note references to outputs of module vpc_proj2
 module "web_proj2" {
-  source            = "../modules/aws-web-server-instance"
+  #  source            = "../modules/aws-web-server-instance"
+  source            = "github.com/rpgd60/tfcourse-modules//web-modules/aws-web-server-instance"
   os                = var.server_os
   ec2_instance_name = "web-p2-${local.name_suffix}"
   ec2_instance_type = var.ec2_instance_type

@@ -4,12 +4,12 @@ output "vpc_id" {
 }
 
 output "subnet_id" {
-  description = "ID of the VPC subnet"
+  description = "ID of the created subnet"
   value       = aws_subnet.web_server_subnet.id
 }
 
 output "subnet_cidr" {
-  description = "CIDR of the subnet"
+  description = "CIDR of the created subnet"
   value       = aws_subnet.web_server_subnet.cidr_block
 }
 
@@ -19,6 +19,6 @@ output "subnet_az" {
 }
 
 output "web_sec_group_id" {
-  description = "Id of vpc security group"
+  description = "Id of security group created in VPC"
   value = aws_security_group.web_server_sg_name.id
 }
