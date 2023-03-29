@@ -1,4 +1,4 @@
-lab_number = "09b1"
+lab_number = "09_02_local"
 
 region    = "eu-west-1"
 profile   = "cta"

@@ -1,4 +1,4 @@
-lab_number = "09b2"
+lab_number = "09_02_github"
 
 region    = "eu-west-1"
 profile   = "cta"

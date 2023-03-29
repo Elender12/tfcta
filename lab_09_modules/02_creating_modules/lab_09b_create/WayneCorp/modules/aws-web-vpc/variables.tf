@@ -7,6 +7,7 @@ variable "vpc_name" {
 
 variable "vpc_cidr_block" {
   description = "CIDR block VPC"
+  type = string
 }
 
 variable "subnet_cidr_block" {
