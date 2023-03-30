@@ -57,3 +57,8 @@ variable "server_os" {
   }
   default = "ubuntu"
 }
+
+variable "bucket_name"{
+  type = string
+  default = "my-bucket-name-ecirstea"
+}

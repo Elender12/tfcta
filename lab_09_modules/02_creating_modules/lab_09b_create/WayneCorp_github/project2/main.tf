@@ -4,7 +4,7 @@
 
 module "vpc_proj2" {
   #  source            = "../modules/aws-web-vpc"
-  source            = "github.com/rpgd60/tfcourse-modules//web-modules/aws-web-vpc"
+  source            = "github.com/Elender12/test-modules//s3_bucket"
   vpc_name          = var.project
   subnet_name       = "${var.project}-subnet"
   aws_az            = "${var.region}c"
@@ -15,13 +15,13 @@ module "vpc_proj2" {
 
 
 ## Note references to outputs of module vpc_proj2
-module "web_proj2" {
-  #  source            = "../modules/aws-web-server-instance"
-  source            = "github.com/rpgd60/tfcourse-modules//web-modules/aws-web-server-instance"
-  os                = var.server_os
-  ec2_instance_name = "web-p2-${local.name_suffix}"
-  ec2_instance_type = var.ec2_instance_type
-  vpc_id            = module.vpc_proj2.vpc_id
-  subnet_id         = module.vpc_proj2.subnet_id
-  sec_group_ids     = [module.vpc_proj2.web_sec_group_id]
-}
+# module "web_proj2" {
+#   #  source            = "../modules/aws-web-server-instance"
+#   source            = "github.com/rpgd60/tfcourse-modules//web-modules/aws-web-server-instance"
+#   os                = var.server_os
+#   ec2_instance_name = "web-p2-${local.name_suffix}"
+#   ec2_instance_type = var.ec2_instance_type
+#   vpc_id            = module.vpc_proj2.vpc_id
+#   subnet_id         = module.vpc_proj2.subnet_id
+#   sec_group_ids     = [module.vpc_proj2.web_sec_group_id]
+# }
